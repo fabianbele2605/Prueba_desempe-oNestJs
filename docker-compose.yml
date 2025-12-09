@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: tech-help-desk-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: riwi123
+      POSTGRES_DB: tech_help_desk
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - tech-help-desk-network
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tech-help-desk-api
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: riwi123
+      DB_DATABASE: tech_help_desk
+      JWT_SECRET: Riwi_123456
+      JWT_EXPIRATION: 3600s
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    networks:
+      - tech-help-desk-network
+
+volumes:
+  postgres_data:
+
+networks:
+  tech-help-desk-network:
+    driver: bridge
