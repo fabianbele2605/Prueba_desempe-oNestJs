@@ -29,7 +29,7 @@ Technical support ticket management system built with NestJS, TypeORM, PostgreSQ
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/tech-help-desk.git
+git clone https://github.com/your-username/tech-help-desk.git](https://github.com/fabianbele2605/Prueba_desempe-oNestJs
 cd tech-help-desk
 ```
 
